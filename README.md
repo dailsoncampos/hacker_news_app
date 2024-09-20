@@ -1,24 +1,27 @@
-# README
+# Tutorial de Instalação e Utilização da Aplicação utilizando Docker
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Pré-requisitos
 
-Things you may want to cover:
+- Docker instalado na sua máquina. Guia de instalação do Docker
+- Docker Compose instalado. Guia de instalação do Docker Compose
 
-* Ruby version
+## Passo 1: Clonar o Repositório
 
-* System dependencies
+Primeiro, clone o repositório da aplicação:
 
-* Configuration
+```bash
+git clone https://github.com/dailsoncampos/hacker_news_app.git
+cd hacker_news_app
+```
 
-* Database creation
+## Passo 2: Construir e Iniciar os Contêineres
 
-* Database initialization
+`docker-compose up --build`
 
-* How to run the test suite
+## Passo 3: Executar as Migrações do Banco de Dados
 
-* Services (job queues, cache servers, search engines, etc.)
+`docker-compose run web rails db:create db:migrate`
 
-* Deployment instructions
+## Passo 4: Acessar a Aplicação
 
-* ...
+`http://localhost:3000`
