@@ -4,7 +4,6 @@
   <%= link_to 'Home', root_path, class: 'btn btn-primary' %>
 </div>
 
-<!-- Formulário de busca -->
 <%= form_with url: search_stories_path, method: :get, local: true do %>
   <div class="input-group mb-3">
     <%= text_field_tag :query, params[:query], placeholder: 'Procurar por...', class: 'form-control' %>
@@ -34,4 +33,8 @@
       <% end %>
     </div>
   <% end %>
+</div>
+
+<div class="d-flex justify-content-center">
+  <%= paginate @stories %>
 </div>

@@ -1,0 +1,11 @@
+pt-BR:
+  kaminari:
+    first: "Primeiro"
+    last: "Último"
+    previous: "Anterior"
+    next: "Próximo"
+    out_of_range: "Sem itens"
+    not_found: "Nenhum item encontrado"
+    pagination:
+      one: "Página %{page} de %{count}"
+      many: "Página %{page} de %{count}"
