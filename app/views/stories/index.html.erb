@@ -1,2 +1,19 @@
-<h1>Stories#index</h1>
-<p>Find me in app/views/stories/index.html.erb</p>
+<h1>Top 15 Hacker News Stories</h1>
+
+<ul>
+  <% @stories.each do |story| %>
+    <li>
+      <a href="<%= story[:url] %>"><%= story[:title] %></a>
+      <ul>
+        <% story[:comments].each do |comment| %>
+          <li><%= comment['text'] %></li>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
+</ul>
+
+<form action="/search" method="get">
+  <input type="text" name="keyword" placeholder="Buscar histórias">
+  <button type="submit">Buscar</button>
+</form>
