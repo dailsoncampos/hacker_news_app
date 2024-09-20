@@ -1,19 +1,37 @@
-<h1>Top 15 Hacker News Stories</h1>
+<h1 class="text-center mb-4">Top 15 Hacker News Stories</h1>
 
-<form action="/search" method="get">
-  <input type="text" name="keyword" placeholder="Buscar histórias">
-  <button type="submit">Buscar</button>
-</form>
+<div class="mb-4">
+  <%= link_to 'Home', root_path, class: 'btn btn-primary' %>
+</div>
 
-<ul>
+<!-- Formulário de busca -->
+<%= form_with url: search_stories_path, method: :get, local: true do %>
+  <div class="input-group mb-3">
+    <%= text_field_tag :query, params[:query], placeholder: 'Procurar por...', class: 'form-control' %>
+    <div class="input-group-append">
+      <%= submit_tag 'Buscar', class: 'btn btn-secondary' %>
+    </div>
+  </div>
+<% end %>
+
+<div class="list-group">
   <% @stories.each do |story| %>
-    <li>
-      <a href="<%= story[:url] %>"><%= story[:title] %></a>
-      <ul>
-        <% story[:comments].each do |comment| %>
-          <li><%= comment['text'] %></li>
-        <% end %>
-      </ul>
-    </li>
+    <div class="list-group-item">
+      <h5><%= link_to story.title, story.url, target: '_blank' %></h5>
+
+      <% if story.comments.any? %>
+        <h6>Comentários Relevantes:</h6>
+        <ul class="list-unstyled">
+          <% story.comments.each do |comment| %>
+            <li class="border-bottom pb-2 mb-2">
+              <strong><%= comment.author %>:</strong>
+              <p><%= comment.text.html_safe %></p>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>Nenhum comentário relevante disponível.</p>
+      <% end %>
+    </div>
   <% end %>
-</ul>
+</div>
