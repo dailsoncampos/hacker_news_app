@@ -1,17 +1,11 @@
 class StoriesController < ApplicationController
   def index
-    @stories = HackerNewsService.top_stories.map do |story|
-      {
-        id: story["id"],
-        title: story["title"],
-        url: story["url"],
-        comments: HackerNewsService.get_comments(story)
-      }
-    end
+    FetchHackerNewsJob.perform_later
+    @stories = Story.includes(:comments).order(created_at: :desc).limit(15)
   end
 
   def search
-    @keyword = params[:keyword]
-    @stories = HackerNewsService.search(@keyword)
+    @stories = Story.where("title ILIKE ?", "%#{params[:query]}%").limit(10)
+    render :index
   end
 end
