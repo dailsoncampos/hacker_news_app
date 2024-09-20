@@ -3,5 +3,10 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
 
   root 'stories#index'
-  get 'search', to: 'stories#search'
+
+  resources :stories, only: [:index] do
+    collection do
+      get 'search'
+    end
+  end
 end
