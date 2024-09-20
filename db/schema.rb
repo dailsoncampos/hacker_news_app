@@ -10,8 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 0) do
+ActiveRecord::Schema[7.0].define(version: 2024_09_20_132447) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "comments", force: :cascade do |t|
+    t.bigint "story_id", null: false
+    t.integer "hacker_news_id", null: false
+    t.string "author", null: false
+    t.text "text", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["story_id"], name: "index_comments_on_story_id"
+  end
+
+  create_table "stories", force: :cascade do |t|
+    t.string "title"
+    t.string "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "hacker_news_id"
+    t.index ["hacker_news_id"], name: "index_stories_on_hacker_news_id", unique: true
+  end
+
+  add_foreign_key "comments", "stories"
 end
