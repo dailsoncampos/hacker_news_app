@@ -1,5 +1,10 @@
 <h1>Top 15 Hacker News Stories</h1>
 
+<form action="/search" method="get">
+  <input type="text" name="keyword" placeholder="Buscar histórias">
+  <button type="submit">Buscar</button>
+</form>
+
 <ul>
   <% @stories.each do |story| %>
     <li>
@@ -12,8 +17,3 @@
     </li>
   <% end %>
 </ul>
-
-<form action="/search" method="get">
-  <input type="text" name="keyword" placeholder="Buscar histórias">
-  <button type="submit">Buscar</button>
-</form>
