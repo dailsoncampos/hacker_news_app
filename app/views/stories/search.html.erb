@@ -1,2 +1,11 @@
-<h1>Stories#search</h1>
-<p>Find me in app/views/stories/search.html.erb</p>
+<h1>Resultado da busca por '<%= @keyword %>'</h1>
+
+<ul>
+  <% @stories.each do |story| %>
+    <li>
+      <a href="<%= story['url'] %>"><%= story['title'] %></a>
+    </li>
+  <% end %>
+</ul>
+
+<a href="/">Voltar</a>
