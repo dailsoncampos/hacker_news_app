@@ -1,7 +1,6 @@
 class Story < ApplicationRecord
-  has_many :comments, dependent: :destroy
+  has_many :comments
 
-  validates :title, presence: true
-  validates :url, presence: true
-  validates :hacker_news_id, presence: true, uniqueness: true
+  validates :title, :url, :hacker_news_id, presence: true
+  validates :hacker_news_id, uniqueness: true
 end
