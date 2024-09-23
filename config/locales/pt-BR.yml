@@ -1,4 +1,27 @@
 pt-BR:
+  activerecord:
+    errors:
+      models:
+        story:
+          attributes:
+            title:
+              blank: "não pode ficar em branco"
+            url:
+              blank: "não pode ficar em branco"
+            hacker_news_id:
+              blank: "não pode ficar em branco"
+      models:
+        story:
+          blank: "não pode ficar em branco"
+          record_invalid: "não é válido"
+      messages:
+        record_invalid: "não é válido"
+        restrict_dependent_destroy:
+          one: "não pode ser excluído porque ainda existem dependentes"
+          many: "não pode ser excluído porque ainda existem dependentes"
+        blank: "não pode ficar em branco"
+        invalid: "é inválido"
+        taken: "já está em uso"
   kaminari:
     first: "Primeiro"
     last: "Último"
