@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe HackerNewsService do
-  let(:top_story_ids) { [1]
+  let(:top_story_ids) { [1] }
   let(:valid_story_data) do
     {
       'id' => 1,
