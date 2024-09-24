@@ -1,0 +1,6 @@
+:concurrency: 5
+:scheduler:
+  :schedule:
+    fetch_hacker_news_job:
+      cron: "0 * * * *"   # Executa a cada hora
+      class: FetchHackerNewsJob
