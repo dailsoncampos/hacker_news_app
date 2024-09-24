@@ -26,13 +26,17 @@ class HackerNewsService
           hacker_news_id: story_id
         )
 
-        comments.each do |comment_data|
-          Comment.create!(
-            story: story,
-            hacker_news_id: comment_data['id'],
-            author: comment_data['by'],
-            text: comment_data['text']
-          )
+        if story.persisted?
+          comments.each do |comment_data|
+            Comment.create(
+              story: story,
+              hacker_news_id: comment_data['id'],
+              author: comment_data['by'],
+              text: comment_data['text']
+            )
+          end
+        else
+          Rails.logger.error("Falha ao criar story com id #{story_id}: #{story.errors.full_messages}")
         end
       end
     end
@@ -58,7 +62,7 @@ class HackerNewsService
 
   def fetch_relevant_comments(comment_ids)
     comment_ids.map { |id| fetch_comment_data(id) }
-               .compact  # Remove nil values
+               .compact
                .select { |comment| comment['text'] && comment['text'].split.size > 20 }
   end
 
