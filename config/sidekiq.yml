@@ -2,5 +2,5 @@
 :scheduler:
   :schedule:
     fetch_hacker_news_job:
-      cron: "0 * * * *"   # Executa a cada hora
+      cron: "*/10 * * * *"
       class: FetchHackerNewsJob
