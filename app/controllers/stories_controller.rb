@@ -1,7 +1,7 @@
 class StoriesController < ApplicationController
   def index
     FetchHackerNewsJob.perform_later
-    @stories = Story.where("title ILIKE ?", "%#{params[:query]}%").page(params[:page]).per(3)
+    @stories = Story.all.limit(15)
   end
 
   def search
